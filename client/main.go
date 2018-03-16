@@ -19,7 +19,7 @@ func main() {
 
 	c := api.NewOkdbClient(conn)
 
-	response, err := c.SayOk(context.Background(), &api.Ok{Message: "ok?"})
+	response, err := c.SayOk(context.Background(), nil)
 	if err != nil {
 		log.Fatalf("Error when calling SayHello: %s", err)
 	}

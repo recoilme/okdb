@@ -1,8 +1,6 @@
 package api
 
 import (
-	"log"
-
 	"golang.org/x/net/context"
 )
 
@@ -10,8 +8,8 @@ import (
 type Server struct {
 }
 
-// SayHello generates response to a Ping request
-func (s *Server) SayOk(ctx context.Context, in *Ok) (*Ok, error) {
-	log.Printf("Receive message %s", in.Message)
+// SayOk generates response to a Ping request
+func (s *Server) SayOk(ctx context.Context, in *Empty) (*Ok, error) {
+	//log.Printf("Receive message")
 	return &Ok{Message: "ok"}, nil
 }

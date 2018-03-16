@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_multiple_files = true;
+option java_multiple_files = false;
 option java_package = "org.okdb.okdbapi";
 option java_outer_classname = "OkdbApi";
 
@@ -10,7 +10,8 @@ message Ok {
   string message = 1;
 }
 
+message Empty {}
 
 service Okdb {
-  rpc SayOk(Ok) returns (Ok) {}
+  rpc SayOk(Empty) returns (Ok) {}
 }

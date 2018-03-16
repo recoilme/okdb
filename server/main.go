@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/recoilme/okdb/api"
 	"google.golang.org/grpc"
@@ -28,7 +31,21 @@ func main() {
 	api.RegisterOkdbServer(grpcServer, &s)
 
 	// start the server
-	if err := grpcServer.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %s", err)
-	}
+	//if err := grpcServer.Serve(lis); err != nil {
+	//log.Fatalf("failed to serve: %s", err)
+	//}
+
+	go func() {
+		//grpcServer.Serve(lis)
+		log.Fatal(grpcServer.Serve(lis))
+	}()
+
+	signalChan := make(chan os.Signal, 1)
+	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
+	<-signalChan
+
+	log.Println("Shutdown signal received, exiting...")
+
+	//grpcServer.Shutdown(context.Background())
+
 }
