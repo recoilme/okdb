@@ -10,6 +10,16 @@ It is generated from these files:
 It has these top-level messages:
 	Ok
 	Empty
+	CmdSet
+	CmdGet
+	ResBytes
+	CmdSets
+	CmdKeys
+	ResKeys
+	CmdGets
+	ResPairs
+	CmdDel
+	ResDel
 */
 package api
 
@@ -57,9 +67,259 @@ func (m *Empty) String() string            { return proto.CompactTextString(m) }
 func (*Empty) ProtoMessage()               {}
 func (*Empty) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
+type CmdSet struct {
+	File string `protobuf:"bytes,1,opt,name=file" json:"file,omitempty"`
+	Key  []byte `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+	Val  []byte `protobuf:"bytes,3,opt,name=val,proto3" json:"val,omitempty"`
+}
+
+func (m *CmdSet) Reset()                    { *m = CmdSet{} }
+func (m *CmdSet) String() string            { return proto.CompactTextString(m) }
+func (*CmdSet) ProtoMessage()               {}
+func (*CmdSet) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
+func (m *CmdSet) GetFile() string {
+	if m != nil {
+		return m.File
+	}
+	return ""
+}
+
+func (m *CmdSet) GetKey() []byte {
+	if m != nil {
+		return m.Key
+	}
+	return nil
+}
+
+func (m *CmdSet) GetVal() []byte {
+	if m != nil {
+		return m.Val
+	}
+	return nil
+}
+
+type CmdGet struct {
+	File string `protobuf:"bytes,1,opt,name=file" json:"file,omitempty"`
+	Key  []byte `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+}
+
+func (m *CmdGet) Reset()                    { *m = CmdGet{} }
+func (m *CmdGet) String() string            { return proto.CompactTextString(m) }
+func (*CmdGet) ProtoMessage()               {}
+func (*CmdGet) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+
+func (m *CmdGet) GetFile() string {
+	if m != nil {
+		return m.File
+	}
+	return ""
+}
+
+func (m *CmdGet) GetKey() []byte {
+	if m != nil {
+		return m.Key
+	}
+	return nil
+}
+
+type ResBytes struct {
+	Bytes []byte `protobuf:"bytes,1,opt,name=bytes,proto3" json:"bytes,omitempty"`
+}
+
+func (m *ResBytes) Reset()                    { *m = ResBytes{} }
+func (m *ResBytes) String() string            { return proto.CompactTextString(m) }
+func (*ResBytes) ProtoMessage()               {}
+func (*ResBytes) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+
+func (m *ResBytes) GetBytes() []byte {
+	if m != nil {
+		return m.Bytes
+	}
+	return nil
+}
+
+type CmdSets struct {
+	File string   `protobuf:"bytes,1,opt,name=file" json:"file,omitempty"`
+	Keys [][]byte `protobuf:"bytes,2,rep,name=keys,proto3" json:"keys,omitempty"`
+}
+
+func (m *CmdSets) Reset()                    { *m = CmdSets{} }
+func (m *CmdSets) String() string            { return proto.CompactTextString(m) }
+func (*CmdSets) ProtoMessage()               {}
+func (*CmdSets) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+
+func (m *CmdSets) GetFile() string {
+	if m != nil {
+		return m.File
+	}
+	return ""
+}
+
+func (m *CmdSets) GetKeys() [][]byte {
+	if m != nil {
+		return m.Keys
+	}
+	return nil
+}
+
+type CmdKeys struct {
+	File   string `protobuf:"bytes,1,opt,name=file" json:"file,omitempty"`
+	From   []byte `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
+	Limit  uint32 `protobuf:"varint,3,opt,name=limit" json:"limit,omitempty"`
+	Offset uint32 `protobuf:"varint,4,opt,name=offset" json:"offset,omitempty"`
+	Asc    bool   `protobuf:"varint,5,opt,name=asc" json:"asc,omitempty"`
+}
+
+func (m *CmdKeys) Reset()                    { *m = CmdKeys{} }
+func (m *CmdKeys) String() string            { return proto.CompactTextString(m) }
+func (*CmdKeys) ProtoMessage()               {}
+func (*CmdKeys) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+
+func (m *CmdKeys) GetFile() string {
+	if m != nil {
+		return m.File
+	}
+	return ""
+}
+
+func (m *CmdKeys) GetFrom() []byte {
+	if m != nil {
+		return m.From
+	}
+	return nil
+}
+
+func (m *CmdKeys) GetLimit() uint32 {
+	if m != nil {
+		return m.Limit
+	}
+	return 0
+}
+
+func (m *CmdKeys) GetOffset() uint32 {
+	if m != nil {
+		return m.Offset
+	}
+	return 0
+}
+
+func (m *CmdKeys) GetAsc() bool {
+	if m != nil {
+		return m.Asc
+	}
+	return false
+}
+
+type ResKeys struct {
+	Keys [][]byte `protobuf:"bytes,1,rep,name=keys,proto3" json:"keys,omitempty"`
+}
+
+func (m *ResKeys) Reset()                    { *m = ResKeys{} }
+func (m *ResKeys) String() string            { return proto.CompactTextString(m) }
+func (*ResKeys) ProtoMessage()               {}
+func (*ResKeys) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+
+func (m *ResKeys) GetKeys() [][]byte {
+	if m != nil {
+		return m.Keys
+	}
+	return nil
+}
+
+type CmdGets struct {
+	File string   `protobuf:"bytes,1,opt,name=file" json:"file,omitempty"`
+	Keys [][]byte `protobuf:"bytes,2,rep,name=keys,proto3" json:"keys,omitempty"`
+}
+
+func (m *CmdGets) Reset()                    { *m = CmdGets{} }
+func (m *CmdGets) String() string            { return proto.CompactTextString(m) }
+func (*CmdGets) ProtoMessage()               {}
+func (*CmdGets) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+
+func (m *CmdGets) GetFile() string {
+	if m != nil {
+		return m.File
+	}
+	return ""
+}
+
+func (m *CmdGets) GetKeys() [][]byte {
+	if m != nil {
+		return m.Keys
+	}
+	return nil
+}
+
+type ResPairs struct {
+	Pairs [][]byte `protobuf:"bytes,1,rep,name=pairs,proto3" json:"pairs,omitempty"`
+}
+
+func (m *ResPairs) Reset()                    { *m = ResPairs{} }
+func (m *ResPairs) String() string            { return proto.CompactTextString(m) }
+func (*ResPairs) ProtoMessage()               {}
+func (*ResPairs) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+
+func (m *ResPairs) GetPairs() [][]byte {
+	if m != nil {
+		return m.Pairs
+	}
+	return nil
+}
+
+type CmdDel struct {
+	File string `protobuf:"bytes,1,opt,name=file" json:"file,omitempty"`
+	Key  []byte `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+}
+
+func (m *CmdDel) Reset()                    { *m = CmdDel{} }
+func (m *CmdDel) String() string            { return proto.CompactTextString(m) }
+func (*CmdDel) ProtoMessage()               {}
+func (*CmdDel) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+
+func (m *CmdDel) GetFile() string {
+	if m != nil {
+		return m.File
+	}
+	return ""
+}
+
+func (m *CmdDel) GetKey() []byte {
+	if m != nil {
+		return m.Key
+	}
+	return nil
+}
+
+type ResDel struct {
+	Deleted bool `protobuf:"varint,1,opt,name=deleted" json:"deleted,omitempty"`
+}
+
+func (m *ResDel) Reset()                    { *m = ResDel{} }
+func (m *ResDel) String() string            { return proto.CompactTextString(m) }
+func (*ResDel) ProtoMessage()               {}
+func (*ResDel) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
+
+func (m *ResDel) GetDeleted() bool {
+	if m != nil {
+		return m.Deleted
+	}
+	return false
+}
+
 func init() {
 	proto.RegisterType((*Ok)(nil), "api.Ok")
 	proto.RegisterType((*Empty)(nil), "api.Empty")
+	proto.RegisterType((*CmdSet)(nil), "api.CmdSet")
+	proto.RegisterType((*CmdGet)(nil), "api.CmdGet")
+	proto.RegisterType((*ResBytes)(nil), "api.ResBytes")
+	proto.RegisterType((*CmdSets)(nil), "api.CmdSets")
+	proto.RegisterType((*CmdKeys)(nil), "api.CmdKeys")
+	proto.RegisterType((*ResKeys)(nil), "api.ResKeys")
+	proto.RegisterType((*CmdGets)(nil), "api.CmdGets")
+	proto.RegisterType((*ResPairs)(nil), "api.ResPairs")
+	proto.RegisterType((*CmdDel)(nil), "api.CmdDel")
+	proto.RegisterType((*ResDel)(nil), "api.ResDel")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -74,6 +334,12 @@ const _ = grpc.SupportPackageIsVersion4
 
 type OkdbClient interface {
 	SayOk(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Ok, error)
+	Set(ctx context.Context, in *CmdSet, opts ...grpc.CallOption) (*Empty, error)
+	Get(ctx context.Context, in *CmdGet, opts ...grpc.CallOption) (*ResBytes, error)
+	Sets(ctx context.Context, in *CmdSets, opts ...grpc.CallOption) (*Empty, error)
+	Keys(ctx context.Context, in *CmdKeys, opts ...grpc.CallOption) (*ResKeys, error)
+	Gets(ctx context.Context, in *CmdGets, opts ...grpc.CallOption) (*ResPairs, error)
+	Delete(ctx context.Context, in *CmdDel, opts ...grpc.CallOption) (*ResDel, error)
 }
 
 type okdbClient struct {
@@ -93,10 +359,70 @@ func (c *okdbClient) SayOk(ctx context.Context, in *Empty, opts ...grpc.CallOpti
 	return out, nil
 }
 
+func (c *okdbClient) Set(ctx context.Context, in *CmdSet, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := grpc.Invoke(ctx, "/api.Okdb/Set", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *okdbClient) Get(ctx context.Context, in *CmdGet, opts ...grpc.CallOption) (*ResBytes, error) {
+	out := new(ResBytes)
+	err := grpc.Invoke(ctx, "/api.Okdb/Get", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *okdbClient) Sets(ctx context.Context, in *CmdSets, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := grpc.Invoke(ctx, "/api.Okdb/Sets", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *okdbClient) Keys(ctx context.Context, in *CmdKeys, opts ...grpc.CallOption) (*ResKeys, error) {
+	out := new(ResKeys)
+	err := grpc.Invoke(ctx, "/api.Okdb/Keys", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *okdbClient) Gets(ctx context.Context, in *CmdGets, opts ...grpc.CallOption) (*ResPairs, error) {
+	out := new(ResPairs)
+	err := grpc.Invoke(ctx, "/api.Okdb/Gets", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *okdbClient) Delete(ctx context.Context, in *CmdDel, opts ...grpc.CallOption) (*ResDel, error) {
+	out := new(ResDel)
+	err := grpc.Invoke(ctx, "/api.Okdb/Delete", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Okdb service
 
 type OkdbServer interface {
 	SayOk(context.Context, *Empty) (*Ok, error)
+	Set(context.Context, *CmdSet) (*Empty, error)
+	Get(context.Context, *CmdGet) (*ResBytes, error)
+	Sets(context.Context, *CmdSets) (*Empty, error)
+	Keys(context.Context, *CmdKeys) (*ResKeys, error)
+	Gets(context.Context, *CmdGets) (*ResPairs, error)
+	Delete(context.Context, *CmdDel) (*ResDel, error)
 }
 
 func RegisterOkdbServer(s *grpc.Server, srv OkdbServer) {
@@ -121,6 +447,114 @@ func _Okdb_SayOk_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Okdb_Set_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CmdSet)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OkdbServer).Set(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.Okdb/Set",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OkdbServer).Set(ctx, req.(*CmdSet))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Okdb_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CmdGet)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OkdbServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.Okdb/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OkdbServer).Get(ctx, req.(*CmdGet))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Okdb_Sets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CmdSets)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OkdbServer).Sets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.Okdb/Sets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OkdbServer).Sets(ctx, req.(*CmdSets))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Okdb_Keys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CmdKeys)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OkdbServer).Keys(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.Okdb/Keys",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OkdbServer).Keys(ctx, req.(*CmdKeys))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Okdb_Gets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CmdGets)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OkdbServer).Gets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.Okdb/Gets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OkdbServer).Gets(ctx, req.(*CmdGets))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Okdb_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CmdDel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OkdbServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.Okdb/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OkdbServer).Delete(ctx, req.(*CmdDel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Okdb_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "api.Okdb",
 	HandlerType: (*OkdbServer)(nil),
@@ -128,6 +562,30 @@ var _Okdb_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SayOk",
 			Handler:    _Okdb_SayOk_Handler,
+		},
+		{
+			MethodName: "Set",
+			Handler:    _Okdb_Set_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _Okdb_Get_Handler,
+		},
+		{
+			MethodName: "Sets",
+			Handler:    _Okdb_Sets_Handler,
+		},
+		{
+			MethodName: "Keys",
+			Handler:    _Okdb_Keys_Handler,
+		},
+		{
+			MethodName: "Gets",
+			Handler:    _Okdb_Gets_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Okdb_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -137,14 +595,32 @@ var _Okdb_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("api.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 137 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4c, 0x2c, 0xc8, 0xd4,
-	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4e, 0x2c, 0xc8, 0x54, 0x92, 0xe3, 0x62, 0xf2, 0xcf,
-	0x16, 0x92, 0xe0, 0x62, 0xcf, 0x4d, 0x2d, 0x2e, 0x4e, 0x4c, 0x4f, 0x95, 0x60, 0x54, 0x60, 0xd4,
-	0xe0, 0x0c, 0x82, 0x71, 0x95, 0xd8, 0xb9, 0x58, 0x5d, 0x73, 0x0b, 0x4a, 0x2a, 0x8d, 0xd4, 0xb8,
-	0x58, 0xfc, 0xb3, 0x53, 0x92, 0x84, 0xe4, 0xb8, 0x58, 0x83, 0x13, 0x2b, 0xfd, 0xb3, 0x85, 0xb8,
-	0xf4, 0x40, 0x46, 0x81, 0x25, 0xa5, 0xd8, 0xc1, 0x6c, 0xff, 0x6c, 0x25, 0x06, 0x27, 0x59, 0x2e,
-	0x81, 0xfc, 0xa2, 0x74, 0xbd, 0xfc, 0xec, 0x94, 0x24, 0x30, 0x91, 0x58, 0x90, 0xe9, 0xc4, 0x0e,
-	0xd2, 0xe9, 0x58, 0x90, 0x19, 0xc0, 0x98, 0xc4, 0x06, 0xb6, 0xdb, 0x18, 0x10, 0x00, 0x00, 0xff,
-	0xff, 0x47, 0x54, 0xff, 0x0b, 0x88, 0x00, 0x00, 0x00,
+	// 428 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x53, 0xd1, 0x6a, 0xdb, 0x30,
+	0x14, 0xb5, 0x63, 0xc7, 0x4e, 0x6f, 0x5d, 0x28, 0x62, 0x0c, 0x61, 0x68, 0x31, 0xda, 0x06, 0x79,
+	0x0a, 0x6c, 0xfb, 0x81, 0x2d, 0xcb, 0xf0, 0xc3, 0x1e, 0x52, 0xd4, 0x2f, 0x50, 0xe6, 0x9b, 0x22,
+	0x2c, 0x63, 0x2f, 0x12, 0x05, 0xbf, 0xef, 0xc3, 0x87, 0xae, 0xe2, 0xd5, 0x1b, 0x1b, 0xb4, 0x2f,
+	0xe6, 0x9c, 0xcb, 0xb9, 0x47, 0xf7, 0x1e, 0xc9, 0x70, 0xa1, 0x06, 0xbd, 0x19, 0x4e, 0xbd, 0xeb,
+	0x59, 0xa2, 0x06, 0x2d, 0x6e, 0x61, 0xb1, 0x6f, 0x19, 0x87, 0xbc, 0x43, 0x6b, 0xd5, 0x03, 0xf2,
+	0xb8, 0x8a, 0xd7, 0x17, 0x72, 0xa2, 0x22, 0x87, 0xe5, 0xd7, 0x6e, 0x70, 0xa3, 0xf8, 0x04, 0xd9,
+	0x97, 0xae, 0xb9, 0x47, 0xc7, 0x18, 0xa4, 0x47, 0x6d, 0x26, 0x25, 0x61, 0x76, 0x0d, 0x49, 0x8b,
+	0x23, 0x5f, 0x54, 0xf1, 0xba, 0x90, 0x1e, 0xfa, 0xca, 0xa3, 0x32, 0x3c, 0x09, 0x95, 0x47, 0x65,
+	0xc4, 0x86, 0x1c, 0xea, 0xe7, 0x3a, 0x88, 0x0a, 0x56, 0x12, 0xed, 0x76, 0x74, 0x68, 0xd9, 0x2b,
+	0x58, 0x1e, 0x3c, 0xa0, 0x96, 0x42, 0x06, 0x22, 0xde, 0x43, 0x1e, 0x66, 0xb2, 0xff, 0xb4, 0x64,
+	0x90, 0xb6, 0x38, 0x5a, 0xbe, 0xa8, 0x92, 0x75, 0x21, 0x09, 0x8b, 0x1f, 0xd4, 0xf2, 0x0d, 0xc7,
+	0xff, 0xb6, 0x1c, 0x4f, 0x7d, 0x77, 0x1e, 0x83, 0xb0, 0x3f, 0xdb, 0xe8, 0x4e, 0x3b, 0xda, 0xe5,
+	0x4a, 0x06, 0xc2, 0x5e, 0x43, 0xd6, 0x1f, 0x8f, 0x16, 0x1d, 0x4f, 0xa9, 0x7c, 0x66, 0x7e, 0x0f,
+	0x65, 0xbf, 0xf3, 0x65, 0x15, 0xaf, 0x57, 0xd2, 0x43, 0x71, 0x03, 0xb9, 0x44, 0x3b, 0x1d, 0x49,
+	0x13, 0xc5, 0xb3, 0x89, 0xc2, 0x12, 0xf5, 0x4b, 0x96, 0x08, 0xc9, 0xdc, 0x29, 0x7d, 0xa2, 0x64,
+	0x06, 0x0f, 0xce, 0x9e, 0x81, 0x9c, 0xb3, 0xde, 0xa1, 0x79, 0x66, 0xd6, 0x02, 0x32, 0x89, 0xd6,
+	0xeb, 0x39, 0xe4, 0x0d, 0x1a, 0x74, 0xd8, 0x50, 0xcb, 0x4a, 0x4e, 0xf4, 0xc3, 0xcf, 0x05, 0xa4,
+	0xfb, 0xb6, 0x39, 0xb0, 0x5b, 0x58, 0xde, 0xab, 0x71, 0xdf, 0x32, 0xd8, 0xf8, 0xd7, 0x44, 0xef,
+	0xa3, 0xcc, 0x09, 0xef, 0x5b, 0x11, 0xb1, 0x0a, 0x12, 0xff, 0x4e, 0x2e, 0xa9, 0x12, 0x2e, 0xa8,
+	0x9c, 0x49, 0x45, 0xc4, 0xde, 0x40, 0x52, 0xcf, 0x15, 0x35, 0xba, 0xf2, 0x8a, 0xc8, 0x74, 0xe3,
+	0x22, 0x62, 0x02, 0x52, 0xba, 0xda, 0x62, 0xe6, 0x63, 0xff, 0x32, 0x7a, 0x0b, 0x29, 0x05, 0xfb,
+	0x5b, 0xe3, 0x59, 0x59, 0x4c, 0x56, 0x9e, 0x89, 0x88, 0xbd, 0x83, 0xb4, 0xfe, 0xc3, 0xc9, 0xb3,
+	0xa7, 0x03, 0x29, 0x48, 0x32, 0xcb, 0x76, 0xb4, 0xeb, 0xd3, 0x60, 0x3b, 0x34, 0xe5, 0xe5, 0xa4,
+	0xdb, 0xa1, 0x11, 0xd1, 0xf6, 0x06, 0xae, 0xfb, 0xd3, 0xc3, 0xa6, 0x6f, 0x9b, 0x03, 0x7d, 0xd4,
+	0xa0, 0xb7, 0xb9, 0xcf, 0xe5, 0xf3, 0xa0, 0xef, 0xa2, 0x43, 0x46, 0x3f, 0xd7, 0xc7, 0x5f, 0x01,
+	0x00, 0x00, 0xff, 0xff, 0x7e, 0xac, 0x7c, 0x46, 0x69, 0x03, 0x00, 0x00,
 }

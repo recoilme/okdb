@@ -12,6 +12,62 @@ message Ok {
 
 message Empty {}
 
+message CmdSet {
+  string file = 1;
+  bytes key = 2;
+  bytes val = 3;
+}
+
+message CmdGet {
+  string file = 1;
+  bytes key = 2;
+}
+
+message ResBytes {
+  bytes bytes = 1;
+}
+
+message CmdSets {
+  string file = 1;
+  repeated bytes keys = 2; 
+}
+
+message CmdKeys {
+  string file = 1;
+  bytes from = 2;
+  uint32 limit = 3;
+  uint32 offset = 4;
+  bool asc = 5;
+}
+
+message ResKeys {
+  repeated bytes keys = 1;
+}
+
+message CmdGets {
+  string file = 1;
+  repeated bytes keys = 2;
+}
+
+message ResPairs {
+  repeated bytes pairs = 1;
+}
+
+message CmdDel {
+  string file = 1;
+  bytes key = 2;
+}
+
+message ResDel {
+  bool deleted = 1;
+}
+
 service Okdb {
   rpc SayOk(Empty) returns (Ok) {}
+  rpc Set(CmdSet) returns (Empty) {}
+  rpc Get(CmdGet) returns (ResBytes) {}
+  rpc Sets(CmdSets) returns (Empty) {}
+  rpc Keys(CmdKeys) returns (ResKeys) {}
+  rpc Gets(CmdGets) returns (ResPairs) {}
+  rpc Delete(CmdDel) returns (ResDel) {}
 }

@@ -8,6 +8,8 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/recoilme/slowpoke"
+
 	"github.com/recoilme/okdb/api"
 	"google.golang.org/grpc"
 )
@@ -31,21 +33,19 @@ func main() {
 	api.RegisterOkdbServer(grpcServer, &s)
 
 	// start the server
-	//if err := grpcServer.Serve(lis); err != nil {
-	//log.Fatalf("failed to serve: %s", err)
-	//}
-
 	go func() {
-		//grpcServer.Serve(lis)
 		log.Fatal(grpcServer.Serve(lis))
 	}()
 
+	// handle kill
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
 	<-signalChan
 
 	log.Println("Shutdown signal received, exiting...")
-
-	//grpcServer.Shutdown(context.Background())
+	closeErr := slowpoke.CloseAll()
+	if closeErr != nil {
+		log.Fatal(closeErr.Error())
+	}
 
 }
