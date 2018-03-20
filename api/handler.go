@@ -11,7 +11,7 @@ import (
 type Server struct {
 }
 
-// SayOk generates response to a Ping request
+// SayOk generates response ok to a Ping request
 func (s *Server) SayOk(ctx context.Context, in *Empty) (*Ok, error) {
 	//log.Printf("Receive message")
 	return &Ok{Message: "ok"}, nil
@@ -30,7 +30,7 @@ func (s *Server) Set(ctx context.Context, cmdSet *CmdSet) (*Empty, error) {
 func (s *Server) Get(ctx context.Context, cmdGet *CmdGet) (*ResBytes, error) {
 	bytes, err := slowpoke.Get(cmdGet.File, cmdGet.Key)
 	if err != nil {
-		return nil, status.Errorf(codes.Unknown, err.Error())
+		return &ResBytes{}, status.Errorf(codes.Unknown, err.Error())
 	}
 
 	return &ResBytes{Bytes: bytes}, nil
@@ -68,4 +68,13 @@ func (s *Server) Delete(ctx context.Context, cmdDel *CmdDel) (*ResDel, error) {
 		return &ResDel{Deleted: res}, status.Errorf(codes.Unknown, err.Error())
 	}
 	return &ResDel{Deleted: res}, nil
+}
+
+// DeleteFile delete file by name
+func (s *Server) DeleteFile(ctx context.Context, cmdDelFile *CmdDelFile) (*Empty, error) {
+	err := slowpoke.DeleteFile(cmdDelFile.File)
+	if err != nil {
+		return &Empty{}, status.Errorf(codes.Unknown, err.Error())
+	}
+	return &Empty{}, nil
 }

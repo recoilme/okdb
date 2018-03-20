@@ -62,6 +62,10 @@ message ResDel {
   bool deleted = 1;
 }
 
+message CmdDelFile {
+  string file = 1;
+}
+
 service Okdb {
   rpc SayOk(Empty) returns (Ok) {}
   rpc Set(CmdSet) returns (Empty) {}
@@ -70,4 +74,5 @@ service Okdb {
   rpc Keys(CmdKeys) returns (ResKeys) {}
   rpc Gets(CmdGets) returns (ResPairs) {}
   rpc Delete(CmdDel) returns (ResDel) {}
+  rpc DeleteFile(CmdDelFile) returns (Empty) {}
 }
