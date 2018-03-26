@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -37,6 +38,9 @@ func main() {
 		log.Fatal(grpcServer.Serve(lis))
 	}()
 
+	// start http server
+	Serve(":5000")
+
 	// handle kill
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
@@ -48,4 +52,16 @@ func main() {
 		log.Fatal(closeErr.Error())
 	}
 
+}
+
+// Serve run server
+// example addr: ":5000"
+// example usage ./simpleserver :5000>>simpleserver.log &
+func Serve(addr string) {
+	http.HandleFunc("/slowpoke/", handlerSlowPoke)
+	log.Fatal(http.ListenAndServe(addr, nil))
+}
+
+func handlerSlowPoke(w http.ResponseWriter, r *http.Request) {
+	api.Parser(w, r)
 }
