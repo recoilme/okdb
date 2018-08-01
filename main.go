@@ -60,8 +60,8 @@ func main() {
 }
 
 // Serve run server
-// example addr: ":5000"
-// example usage ./simpleserver :5000>>simpleserver.log &
+// default addr: ":5000"
+// example usage ./okdb -http=":5000">>simpleserver.log &
 func Serve(addr string) {
 	http.HandleFunc("/slowpoke/", handlerSlowPoke)
 	log.Fatal(http.ListenAndServe(addr, nil))
